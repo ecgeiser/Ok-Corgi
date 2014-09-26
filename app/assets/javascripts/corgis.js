@@ -31,13 +31,27 @@ var OkCorgiApp = function() {
 
     var elId = $(this).attr("id");
     var containerSelector = "";
+    var matchBool = false;
 
     if (elId === "paw-left") {
+      self = $("li.corgi.active");
       containerSelector = "#misses";
     }
     else {
       containerSelector = "#matches";
+      self = $("li.corgi.active")
+      matchBool = true;
     }
+
+    $.ajax({
+        type: "PUT",
+        url: "/corgis/" + self.attr("data-id") + ".json",
+        dataType: "json",
+        data: { corgi: {match: matchBool} },
+        success: function(data) {
+          console.log("success!");
+        } 
+    });
 
     // Append thumbnail list item to the #matches list
     $(containerSelector + " ul").append(createCorgiThumbnail());

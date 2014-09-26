@@ -5,6 +5,8 @@ class CorgisController < ApplicationController
   # GET /corgis.json
   def index
     @corgis = Corgi.all
+    @matches = @corgis.where(:match => true)
+    @misses = @corgis.where(:match => false)
   end
 
   # GET /corgis/1
@@ -27,7 +29,11 @@ class CorgisController < ApplicationController
     @corgi = Corgi.new(corgi_params)
 
     if @corgi.save
-      redirect_to @corgi, notice: 'Corgi was successfully created.'
+      respond_to do |format|
+        format.html
+        format.json { render :json => @corgi }
+      end
+      #redirect_to @corgi, notice: 'Corgi was successfully created.'
     else
       render :new
     end
@@ -37,7 +43,11 @@ class CorgisController < ApplicationController
   # PATCH/PUT /corgis/1.json
   def update
     if @corgi.update(corgi_params)
-      redirect_to @corgi, notice: 'Corgi was successfully updated.'
+      respond_to do |format|
+        format.html
+        format.json { render :json => @corgi }
+      end
+      #redirect_to @corgi, notice: 'Corgi was successfully updated.'
     else
       render :edit
     end
@@ -59,6 +69,6 @@ class CorgisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def corgi_params
-      params.require(:corgi).permit(:name, :bio, :profile_img)
+      params.require(:corgi).permit(:name, :bio, :profile_img, :match)
     end
 end
