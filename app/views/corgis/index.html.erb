@@ -16,11 +16,13 @@
     <ul>
 
       <% @corgis.each_with_index do |corgi, i| %>
-        <li data-id="<%= corgi.id%>" class="corgi <%= (i == 0) ? 'active' : 'hidden' %>">
-          <h3><%= corgi.name %></h3>
-          <%= image_tag corgi.profile_img, :class => "pic" %>
-          <p class="bio"><%= corgi.bio %></p>
-        </li>
+        <% if corgi.match != true && corgi.match != false %>
+          <li data-id="<%= corgi.id%>" class="corgi <%= (i == 0) ? 'active' : 'hidden' %>">
+            <h3><%= corgi.name %></h3>
+            <%= image_tag corgi.profile_img, :class => "pic" %>
+            <p class="bio"><%= corgi.bio %></p>
+          </li>
+        <% end %>
       <% end %>
 
     </ul>
