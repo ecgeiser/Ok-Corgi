@@ -58,6 +58,11 @@ var OkCorgiApp = function() {
 
     showNextCorgi();
   });
+
+  $("form").on("submit", function(event) { 
+    event.preventDefault();
+    
+  });
 }
 
 
