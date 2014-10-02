@@ -1,5 +1,5 @@
-<div class="clearfix">
-  <div class="corgi-container" id="misses">
+<div class="row">
+  <div class="corgi-container small-4 columns" id="misses">
     <h2>Thanks, but No Thanks</h2>
     <ul>
       <% @misses.each do |miss| %>
@@ -27,12 +27,14 @@
 
     </ul>
 
-    <button class="choose-corgi" id="paw-left">Paw Left (No, Thanks)</button>
-    <button class="choose-corgi" id="paw-right">Paw Right (Yes, Please!)</button>
+    <div class="row">
+      <button class="choose-corgi" id="paw-left">Paw Left (No, Thanks)</button>
+      <button class="choose-corgi" id="paw-right">Paw Right (Yes, Please!)</button>
+    </div>
 
   </div>
 
-  <div class="corgi-container" id="matches">
+  <div class="corgi-container small-4 columns" id="matches">
     <h2>Matches!</h2>
     <ul>
       <% @matches.each do |match| %>
@@ -44,6 +46,6 @@
     </ul>
   </div>
 </div>
-<div>
+<div class="row">
   <%= link_to 'New Corgi', new_corgi_path %>
 </div>
